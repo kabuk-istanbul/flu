@@ -1,0 +1,47 @@
+
+
+
+
+flu-block-element-height-increment = 0.5rem
+
+flu-sizes = small base big large
+
+flu-block-heights = {
+
+}
+
+flu-block-font-sizes = {
+
+}
+
+flu-block-line-heights = {
+
+}
+
+blockHeight(size = base)
+  if flu-block-heights[size]
+    flu-block-heights[size]
+  else
+    base-index = index(flu-sizes, base)
+    size-index = index(flu-sizes, size)
+    $base-block-height + (size-index - base-index) * flu-block-element-height-increment
+
+
+blockLineHeight(size)
+  if flu-block-line-heights[size]
+    flu-block-line-heights[size]
+  else
+    $base-line-height
+
+blockFontSize(size)
+  if flu-block-font-sizes[size]
+    flu-block-font-sizes[size]
+  else
+    $base-font-size
+
+blockPadding(side, size = base, line-height = $base-line-height, border-width = 0)
+  block-height = blockHeight(size)
+  if side == right || side == left
+    (ceil(block-height / $magic-unit / 2) - 1) * $magic-unit - border-width
+  else
+    (block-height - line-height) / 2 - border-width

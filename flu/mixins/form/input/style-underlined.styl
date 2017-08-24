@@ -1,0 +1,40 @@
+-flu-input-style-underlined()
+  background-color: transparent
+  border-top-width: 0
+  border-right-width: 0
+  border-bottom-width: $input-border-width
+  border-left-width: 0
+  border-style: solid
+  border-color: $input-border-color
+  border-radius: 0
+  input-style: 'underlined'
+
+  &::input-placeholder
+    color $input-placeholder-color
+    opacity 1
+
+  &:not(.{$input-error-class}):not(.{$input-success-class}):not([disabled]):not([readonly]):not(:focus):hover
+    color: $input-hover-color unless @color == $input-hover-color
+    border-color: $input-hover-border-color unless @border-color == $input-hover-border-color
+
+  &:not(.{$input-error-class}):not(.{$input-success-class}):not([readonly]):focus
+    color: $input-focus-color unless @color == $input-focus-color
+    background-color: $input-focus-bg-color unless @background-color == $input-focus-bg-color
+    border-color: $input-focus-border-color unless @border-color == $input-focus-border-color
+
+  &[disabled],
+  [disabled] &
+    cursor not-allowed
+    color: $input-disabled-color unless @color == $input-disabled-color
+    border-color: $input-disabled-border-color unless @border-color == $input-disabled-border-color
+
+  &[readonly]
+    box-shadow none
+
+  &.{$input-success-class}
+    color: $input-success-color unless @color == $input-success-color
+    border-color: $input-success-border-color unless @border-color == $input-success-border-color
+
+  &.{$input-error-class}
+    color: $input-error-color unless @color == $input-error-color
+    border-color: $input-error-border-color unless  @border-color == $input-error-border-color

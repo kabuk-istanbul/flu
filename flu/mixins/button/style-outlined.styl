@@ -1,0 +1,22 @@
+-flu-button-style-outlined()
+  -flu-button-base()
+  background-color: transparent if @background-color == null
+  background-image: none if @background-image == null
+  border-width: $button-border-width if @border-width == null
+  border-style: solid if @border-style == null
+  border-radius: $button-border-radius if @border-radius == null
+  -flu-transition: color background-color border-color
+  button-style: outlined
+
+-flu-button-color-outlined()
+  $border-color = arguments[0]
+  $color = arguments[1] || $border-color
+
+  color: $color
+  border-color: $border-color
+  &:hover
+    color: #ffffff
+    background-color: $border-color
+  &:active
+    border-color: shade($border-color, 10%)
+    background-color: shade($border-color, 10%)

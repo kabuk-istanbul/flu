@@ -1,0 +1,27 @@
+at($medium)
+  if $medium == palm
+    @media screen and (max-width: ($media-sizes['tablet'] - 1))
+      {block}
+  else if $medium == tablet
+    @media screen and (min-width: $media-sizes['tablet'])
+      {block}
+  else if $medium == laptop
+    @media screen and (min-width: $media-sizes['laptop'])
+      {block}
+  else if $medium == desktop
+    @media screen and (min-width: $media-sizes['desktop'])
+      {block}
+
+at-only($medium)
+  if $medium == palm
+    @media screen and (max-width: ($media-sizes['tablet'] - 1))
+      {block}
+  else if $medium == tablet
+    @media screen and (min-width: $media-sizes['tablet']) and (max-width: ($media-sizes['laptop'] - 1))
+      {block}
+  else if $medium == laptop
+    @media screen and (min-width: $media-sizes['laptop']) and (max-width: ($media-sizes['desktop'] - 1))
+      {block}
+  else if $medium == desktop
+    @media screen and (min-width: $media-sizes['desktop'])
+      {block}

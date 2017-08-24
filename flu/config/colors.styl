@@ -1,0 +1,28 @@
+$gray-scale = {
+  'almost-black'  : tint($ui-colors['black'], 6%),
+  'darkest'       : tint($ui-colors['black'], 17%),
+  'darker'        : tint($ui-colors['black'], 28%),
+  'dark'          : tint($ui-colors['black'], 39%),
+  'base'          : tint($ui-colors['black'], 50%),
+  'light'         : tint($ui-colors['black'], 61%),
+  'lighter'       : tint($ui-colors['black'], 72%),
+  'lightest'      : tint($ui-colors['black'], 83%),
+  'almost-white'  : tint($ui-colors['black'], 94%)
+}
+
+gray(tone = 'base')
+  if typeof(tone) == 'unit'
+    tint($ui-colors['black'], tone)
+  else
+    $gray-scale[tone]
+
+class-name-of-color($color)
+  $result = class-name($color)
+  for $n, $c in $brand-colors
+    if $c == $color
+      $result = 'brand-' + $n
+
+  for $n, $c in $ui-colors
+    if $c == $color
+      $result = $n
+  $result

@@ -1,0 +1,30 @@
+@import 'vars'
+@import '../../flu'
+@import 'layout/*'
+
+.app
+  -flu-position: fixed right 3rem left
+  -flu-size: 100px 200px
+  -flu-transition: width height
+
+  
+
+.container
+  -flu-display: container
+
+-include-button({
+  styles : link outlined filled simple,
+  colors : $brand-colors['primary'] $ui-colors[success],
+  sizes : big
+})
+
+-include-text-box({
+  styles: basic underlined,
+  sizes : big
+})
+
+-include-select-box()
+
+-include-grid()
+
+-include-component(menu)

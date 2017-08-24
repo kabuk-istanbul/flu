@@ -1,0 +1,21 @@
+-flu-picker($type, $style, $size = base)
+  -flu-picker-type: $type
+  -flu-picker-style: $style
+  -flu-picker-size: $size
+
+-flu-picker-style($style)
+  mxn = -flu-picker-style- + $style
+  mxn()
+
+-flu-picker-size($size)
+  if @picker-style == null
+    warn("'-flu-picker-size' mixin needs '-flu-picker-style' mixin called before.")
+
+  input,
+  select
+    -flu-block-size: $size
+
+-flu-picker-base()
+  position: relative
+  &:after
+    pointer-events: none

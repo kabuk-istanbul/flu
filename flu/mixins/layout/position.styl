@@ -1,0 +1,18 @@
+-flu-position($type, $args...)
+  position: $type
+
+  $count = length($args) - 1;
+  $property-index = left top right bottom
+
+  $j = 0
+  for $i in (0..$count)
+    if $count >= $j
+      if type($args[$j]) == 'ident'
+        if type($args[$j + 1]) == 'unit'
+          {$args[$j]}: $args[$j + 1]
+          $j += 1
+        else
+          {$args[$j]}: 0
+      else
+        {$property-index[$j]}: $args[$j]
+    $j += 1

@@ -1,0 +1,22 @@
+flu-config = {}
+
+config(key, value = false)
+  if value
+    flu-config[key] = value
+  else if flu-config[key]
+    flu-config[key]
+  else
+    false
+
+@import 'default'
+@import 'base'
+@import 'size'
+@import 'colors'
+@import 'typography'
+@import 'grid'
+
+@import 'icon'
+@import 'button'
+@import 'form'
+@import 'table'
+@import 'spinner'

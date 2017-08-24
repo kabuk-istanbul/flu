@@ -1,0 +1,42 @@
+-flu-button($style, $args...) // TODO no arguments case
+  $size = base
+  if type(last($args)) == 'ident' || type(last($args)) == 'unit'
+    $size = pop($args)
+
+  -flu-button-style: $style
+  -flu-button-color: $args
+  -flu-button-size: $size
+
+-flu-button-style($style)
+  mxn = -flu-button-style- + $style
+  mxn()
+
+-flu-button-color()
+  if @button-style == null
+    warn("'-flu-button-color' mixin needs '-flu-button-style' mixin called before.")
+  else
+    mxn = -flu-button-color- + @button-style
+    mxn(arguments)
+
+-flu-button-size($size)
+  if @button-style == null
+    warn("'-flu-button-size' mixin needs '-flu-button-style' mixin called before.")
+  -flu-block-size: $size
+
+-flu-button-base()
+  display: inline-flex unless @display
+  margin: 0 if @margin == null
+  justify-content: center unless @justify-content
+  align-items: center unless @align-items
+  vertical-align: top unless @vertical-align
+  user-select: none  unless @user-select
+  font-weight: $button-font-weight unless @font-weight
+  font-size: $button-font-size unless @font-size
+  font-family: $button-font-family unless @font-family
+  text-align: center unless @text-align
+  white-space: nowrap unless @white-space
+  letter-spacing: $button-letter-spacing unless @letter-spacing
+  outline: 0 none if @outline == null
+  cursor: pointer unless @cursor
+
+-flu-display-d()

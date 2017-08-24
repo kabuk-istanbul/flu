@@ -1,0 +1,11 @@
+-flu-display-container()
+  position: relative
+  margin-left: auto
+  margin-right: auto
+  -flu-transition: width
+  for medium in $media
+    if medium == $base-medium
+      width $container-width-at[medium]
+    else
+      +at(medium)
+        width $container-width-at[medium]

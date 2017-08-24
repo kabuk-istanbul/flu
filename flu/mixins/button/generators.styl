@@ -1,0 +1,42 @@
+$included-button-styles = ()
+
+-include-button($options = null)
+  $styles = $options[styles] || $default-button-style
+  $colors = $options[colors] || $default-button-color
+  $sizes = $options[sizes] || base
+
+  $not-selector = ''
+  if length($styles) > 1
+    $count = length($styles) - 1
+    for $i in (0..$count)
+      if $i > 0
+        $not-selector += ':not(.-' + $styles[$i] + ')'
+
+  .button
+    -flu-button-base()
+    &{$not-selector}
+      -flu-button-style: $styles[0]
+      -flu-button-color: $colors[0]
+      -flu-button-size: base
+      for $color, $j in $colors
+        if $j > 0
+          &.-{class-name-of-color($color)}
+            -flu-button-color: $color
+      for $size, $k in $sizes
+        if $size != base
+          &.-{$size}
+            -flu-button-size: $size
+    for $style, $i in $styles
+      if $i > 0
+        &.-{$style}
+          -flu-button-style: $style
+          -flu-button-size: base
+          -flu-button-color: $colors[0]
+          for $color, $j in $colors
+            if $j > 0
+              &.-{class-name-of-color($color)}
+                -flu-button-color: $color
+          for $size, $k in $sizes
+            if $size != base
+              &.-{$size}
+                -flu-button-size: $size

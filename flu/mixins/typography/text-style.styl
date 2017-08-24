@@ -1,0 +1,33 @@
+-flu-text-style(style, args...)
+  mxn = -flu-text-style- + style
+  mxn(args)
+
+-flu-text-style-title(size)
+  font-weight: bold
+  font-family: $title-font-family
+  if size != null
+    -flu-text-size: size
+
+-flu-text-style-subtitle(size)
+  font-weight: normal
+  font-family: $title-font-family
+  if size != null
+    -flu-text-size: size
+
+-flu-text-style-basic(size)
+  font-weight: normal
+  font-family: $title-font-family
+  if size != null
+    -flu-text-size: size
+
+-flu-text-style-code(size)
+  font-weight: normal
+  font-family: $monospaced-font-family
+  if size != null
+    -flu-text-size: size
+
+-flu-text-size(size)
+  if type(size) == 'ident'
+    size = fontSize(size)
+  font-size: size
+  line-height: lineHeight(@font-size)

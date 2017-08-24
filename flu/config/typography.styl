@@ -1,0 +1,26 @@
+flu-default-font-sizes = {
+  huge    : 3.5rem,     // 64px
+  greater : 3rem,  // 60px gigantic
+  great   : 2.5rem,  // 52px gigantic
+  larger  : 2rem,  // 44px huge
+  large   : 1.75rem,  // 36px great
+  bigger  : 1.50rem,  // 28px large
+  big     : 1.25rem,  // 20px big
+  normal  : 1rem,     // 16px medium
+  medium  : 0.875rem, // 14px normal
+  small   : 0.75rem,  // 12px small
+  smaller : 0.6875rem
+}
+
+fontSize(key)
+  flu-default-font-sizes[key]
+
+lineHeight(font-size)
+  if unit(font-size) == 'px'
+    font-size = to-rem(font-size)
+  if font-size >= 3rem
+    round((font-size * 1.125) / $magic-unit) * $magic-unit
+  else if font-size >= 2rem
+    round((font-size * 1.25) / $magic-unit) * $magic-unit
+  else
+    round((font-size * 1.5) / $magic-unit) * $magic-unit

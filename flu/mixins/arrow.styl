@@ -1,0 +1,27 @@
+-flu-arrow($direction, $size, $color)
+  $selector = selector()
+
+  if match('after', $selector) == null && match('before', $selector) == null
+    &:before
+      -is-arrow($direction, $size, $color)
+  else
+    -is-arrow($direction, $size, $color)
+
+
+-is-arrow($direction, $size, $color)
+  width: 0
+  height: 0
+  content: ''
+  z-index: 2
+  border-width: $size
+  border-style: solid
+
+  border-{opposite-position($direction)}-color: $color
+  border-{$direction}-color: transparent
+
+  if $direction == top || $direction == bottom
+    border-left-color: transparent
+    border-right-color: transparent
+  else
+    border-top-color: transparent
+    border-bottom-color: transparent

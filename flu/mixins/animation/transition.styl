@@ -1,0 +1,26 @@
+-flu-transition($arguments...)
+  $properties = ()
+  $duration = $base-transition-duration
+  $function = $base-transition-function
+  $delay = 0
+  $duration-is-set = false
+  for $argument in $arguments
+    if type($argument) == 'unit'
+      if $duration-is-set == false
+        $duration = $argument
+        $duration-is-set = true
+      else
+        $delay = $argument
+    else if type($argument) == 'call'
+      $function = $argument
+    else
+      $easing-idents = linear ease ease-in ease-out ease-in-out
+      if index($easing-idents, $argument) != null
+        $function = $arguments
+      else
+        push($properties, $argument)
+
+  transition-property: unquote(join(', ', $properties))
+  transition-duration: $duration
+  transition-timing-function: $function
+  transition-delay: $delay unless $delay == 0

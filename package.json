@@ -1,0 +1,40 @@
+{
+  "name": "flu",
+  "version": "0.1.0",
+  "description": "Stylus mixin and CSS generation library",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {
+    "name-the-color-stylus": "^1.0.0",
+    "swiper": "^3.4.2"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.18.13",
+    "gulp": "^3.9.1",
+    "gulp-stylus": "^2.6.0",
+    "gulp-uglify": "^3.0.0",
+    "gulp-uglifycss": "^1.0.8",
+    "webpack-stream": "^4.0.0",
+    "stylus": "^0.54.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kabuk-istanbul/flu.git"
+  },
+  "keywords": [
+    "stylus",
+    "mixin",
+    "css"
+  ],
+  "author": "Kabuk Istanbul Ltd",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kabuk-istanbul/flu/issues"
+  },
+  "homepage": "https://github.com/kabuk-istanbul/flu#readme"
+}

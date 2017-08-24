@@ -1,0 +1,39 @@
+$grid-columns                   = 12
+$grid-has-intermediate-columns  = true
+$grid-is-responsive             = true
+$grid-gutters                   = 1rem
+$grid-fluid-class-tpl           = '*.-x-{numerator}-by-{denominator}'
+$grid-flex-class-tpl            = '*.-x-{numerator}'
+$grid-medium-suffix-tpl         = '-at-{medium}'
+
+grid-map($column-count, $medium = null, $has-intermediate-columns = $grid-has-intermediate-columns)
+  $value-list = ()
+  $class-list = ()
+  $intermediate = 0
+  if $medium == null
+    $screen = ''
+  else
+    $screen = '-at-' + $medium
+  for $i in (1..$column-count)
+    $intermediate = $i - 1
+    if $intermediate > 0
+      for $j in (1..$intermediate)
+        $key = percentage($j / $i)
+        $k = index($value-list, $key)
+        if $k == null
+          push($value-list, $key)
+          $k = index($value-list, $key)
+        $class-name = $grid-fluid-class-tpl
+        $class-name = replace('{numerator}', '' + $j, $class-name)
+        $class-name = replace('{denominator}', '' + $i, $class-name)
+        if $class-list[$k]
+          $class-list[$k] = $class-list[$k] + ', ' + $class-name + $screen
+        else
+          $class-list[$k] = $class-name + $screen
+    else
+      $key = 100%
+      push($value-list, $key)
+      $k = index($value-list, $key)
+      $class-list[$k] = '.-full' + $screen
+
+  return {'class-list': $class-list, 'value-list': $value-list}

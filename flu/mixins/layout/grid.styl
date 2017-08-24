@@ -1,0 +1,115 @@
+-flu-display-column(numerator = null, denominator = $grid-columns)
+  padding-left ($grid-gutters / 2)
+  padding-right ($grid-gutters / 2)
+
+-flu-column-size(numerator = null, denominator = null)
+  if denominator == null
+    if unit(numerator) == ''
+      flex: numerator
+    else
+      width: numerator
+  else
+    if unit(numerator) == ''
+      width: percentage(numerator / denominator)
+    else
+      width: numerator
+      height: denominator
+
+-flu-display-row()
+  display: flex
+  align-items: stretch
+  margin-left: -($grid-gutters / 2)
+  margin-right: -($grid-gutters / 2)
+
+-flu-row-size(numerator = null, denominator = null)
+  if denominator == null
+    flex: numerator
+  else
+    height: percentage(numerator / denominator)
+
+-include-grid-base()
+  unless config('grid-base-included')
+    config('grid-base-included', true)
+    .grid.-container
+      padding-left ($grid-gutters / 2)
+      padding-right ($grid-gutters / 2)
+
+    .grid.-multirow
+      .grid_row:not(:first-child)
+        margin-top $grid-gutters
+
+    .grid_row
+      display flex
+      align-items stretch
+      margin-left -($grid-gutters / 2)
+      margin-right -($grid-gutters / 2)
+
+    .grid_row.-has-margin-bottom
+      margin-bottom $grid-gutters
+
+    .grid_row.-columns-at-center
+      justify-content center
+
+    .grid_column:not(.-no-gutter)
+      padding-left ($grid-gutters / 2)
+      padding-right ($grid-gutters / 2)
+
+    .grid.-fixed
+      -flu-display: container
+
+-include-fluid-modifier($numerator, $denominator, $medium = $base-medium)
+  -include-grid-base()
+  if $medium == $base-medium
+    .-span-{$numerator}-of-{$denominator}
+      width: percentage($numerator / $denominator)
+  else
+    +at-only($medium)
+      .-span-{$numerator}-of-{$denominator}-at-{medium}
+        width: percentage($numerator / $denominator)
+
+
+include-flex-modifier(count)
+  -include-grid-base()
+  .-span-{count}x
+    flex count
+
+
+-include-fluid-grid($columns = $grid-columns, $is-responsive = $grid-is-responsive, $has-intermediate-columns = $grid-has-intermediate-columns)
+  -include-grid-base()
+
+  $class-map = grid-map($columns, null, $has-intermediate-columns)
+
+  for $value, $index in $class-map['value-list']
+    {$class-map['class-list'][$index]}
+      flex: none
+      width: unit($value, '%')
+
+  if $is-responsive
+    for $medium in $media
+      if $medium != $base-medium
+        $class-map = grid-map($columns, $medium, $has-intermediate-columns)
+        +at-only($medium)
+          for $value, $index in $class-map['value-list']
+            {$class-map['class-list'][$index]}
+              width: unit($value, '%')
+
+
+-include-flex-grid($columns = $grid-columns, $is-responsive = $grid-is-responsive, $has-intermediate-columns = $grid-has-intermediate-columns)
+  -include-grid-base()
+
+  for $i in (1..$columns)
+    .-x-{$i}
+      flex: $i
+
+  if $is-responsive
+    for $medium in $media
+      if $medium != $base-medium
+        +at-only($medium)
+          for $i in (1..$columns)
+            .-x-{$i}-at-{$medium}
+              flex: $i
+
+
+-include-grid($columns = $grid-columns, $is-responsive = $grid-is-responsive, $has-intermediate-columns = $grid-has-intermediate-columns)
+  -include-fluid-grid($columns, $is-responsive, $has-intermediate-columns)
+  -include-flex-grid($columns, $is-responsive, $has-intermediate-columns)

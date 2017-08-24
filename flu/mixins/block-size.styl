@@ -1,0 +1,22 @@
+-flu-block-size($size)
+  $block-height = type($size) == 'ident' ? blockHeight($size) : $size
+  height: $block-height
+  min-width: $block-height unless @min-width
+  line-height: $base-line-height unless @line-height
+
+  $border = {}
+  if @border-width
+    $border[top] = @border-width
+    $border[right] = @border-width
+    $border[bottom] = @border-width
+    $border[left] = @border-width
+  else
+    $border[top] = @border-top-width || 0
+    $border[right] = @border-right-width || 0
+    $border[bottom] = @border-bottom-width || 0
+    $border[left] = @border-left-width || 0
+
+  padding-top: (($block-height - @line-height) / 2 - $border[top])
+  padding-right: ((ceil($block-height / $magic-unit / 2) - 1) * $magic-unit - $border[right])
+  padding-bottom: (($block-height - @line-height) / 2 - $border[bottom])
+  padding-left: ((ceil($block-height / $magic-unit / 2) - 1) * $magic-unit - $border[left])

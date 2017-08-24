@@ -1,0 +1,34 @@
+-include-title-base()
+  unless config('title-base-included')
+    config('title-base-included', true)
+    .title
+      -flu-text-style: title
+
+-include-subtitle-base()
+  unless config('subtitle-base-included')
+    config('subtitle-base-included', true)
+    .subtitle
+      -flu-text-style: subtitle
+
+-include-text-style(style)
+  mxn = -include- + style + -base
+  mxn()
+
+-include-text-size(size)
+  .title.-{size},
+  .text.-{size},
+  .subtitle.-{size}
+    -flu-text-size(size)
+
+-include-text-color(color)
+  if color == muted
+    .title.-{color},
+    .text.-{color},
+    .subtitle.-{color}
+      color: tint($brand-colors['secondary'], 50%)
+
+  else if color == inverted
+    .title.-{color},
+    .text.-{color},
+    .subtitle.-{color}
+      color: white

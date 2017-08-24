@@ -1,0 +1,62 @@
+//---| TEXT BOX |-----------------------------------------------------------------------------------------------------//
+
+-include-text-box($options = null)
+  $styles = $options[styles] || $default-input-style
+  $sizes = $options[sizes] || base
+  $not-selector = ''
+  if length($styles) > 1
+    $count = length($styles) - 1
+    for $i in (0..$count)
+      if $i > 0
+        $not-selector += ':not(.-' + $styles[$i] + ')'
+
+  .text-box
+    -flu-input-base()
+    &{$not-selector}
+      -flu-input-style: $styles[0]
+      -flu-input-size: base
+      for $size, $k in $sizes
+        if $size != base
+          &.-{$size}
+            -flu-input-size: $size
+    for $style, $i in $styles
+      if $i > 0
+        &.-{$style}
+          -flu-input-style: $style
+          -flu-input-size: base
+          for $size, $k in $sizes
+            if $size != base
+              &.-{$size}
+                -flu-input-size: $size
+
+//---| SELECT BOX |---------------------------------------------------------------------------------------------------//
+
+-include-select-box($options = null)
+  $styles = $options[styles] || $default-input-style
+  $sizes = $options[sizes] || base
+  $not-selector = ''
+  if length($styles) > 1
+    $count = length($styles) - 1
+    for $i in (0..$count)
+      if $i > 0
+        $not-selector += ':not(.-' + $styles[$i] + ')'
+
+  .select-box
+    &{$not-selector}
+      -flu-picker-type: select
+      -flu-picker-style: $styles[0]
+      -flu-picker-size: base
+      for $size, $k in $sizes
+        if $size != base
+          &.-{$size}
+            -flu-picker-size: $size
+    for $style, $i in $styles
+      if $i > 0
+        &.-{$style}
+          -flu-picker-style: $style
+          -flu-picker-size: base
+          for $size, $k in $sizes
+            if $size != base
+              &.-{$size}
+                -flu-picker-size: $size
+

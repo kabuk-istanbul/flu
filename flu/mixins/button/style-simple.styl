@@ -1,0 +1,19 @@
+-flu-button-style-simple()
+  -flu-button-base()
+  background-color: transparent if @background-color == null
+  background-image: none if @background-image == null
+  border-width: 0 if @border-width == null
+  border-style: none if @border-style == null
+  border-radius: $button-border-radius if @border-radius == null
+  -flu-transition: color background-color
+  button-style: 'simple'
+
+-flu-button-color-simple()
+  $color = arguments[0]
+  color: $color
+  &:hover
+    color: #FFFFFF
+    background-color: $color
+  &:active
+    color: #FFFFFF
+    background-color: shade($color, 10%)

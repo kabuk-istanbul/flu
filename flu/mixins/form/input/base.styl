@@ -1,0 +1,29 @@
+-flu-input($style, $size = base)
+  -flu-input-style: $style
+  -flu-input-size: $size
+
+-flu-input-style($style)
+  mxn = -flu-input-style- + $style
+  mxn()
+
+-flu-input-size($size)
+  if @input-style == null
+    warn("'-flu-input-size' mixin needs '-flu-input-style' mixin called before.")
+  -flu-block-size: $size
+
+-flu-input-base()
+  display: block unless @display
+  width: 100% unless @width
+  margin: 0 if @margin == null
+  font-size: $input-font-size unless @font-size
+  line-height: $input-line-height unless @line-height
+  font-family: inherit unless @font-family
+  color: $input-color unless @color
+  background-image: none unless @background-image
+  outline: 0 none unless @outline
+  -moz-appearance: none
+  -webkit-appearance: none
+
+-flu-input-style(style, args...)
+  mxn = -flu-input-style- + style
+  mxn(args)

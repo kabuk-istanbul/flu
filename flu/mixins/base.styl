@@ -1,0 +1,10 @@
+-flu-display($display)
+  $mxn = convert('-flu-display-' + $display)
+  $mxn()
+
+-include-component($name)
+  $config-label = replace('/', '-', $name) + '-included'
+  unless config($config-label)
+    config($config-label, true)
+    $component = "../components/" + $name
+  @import $component

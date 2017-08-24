@@ -1,0 +1,22 @@
+.section
+  display: flex
+  flex-direction: column
+
+.section_header
+  flex: none
+
+.section_content
+  flex: 1
+
+.section_footer
+  flex: none
+
+.section_header:not(.-fixed),
+.section_content:not(.-fixed),
+.section_footer:not(.-fixed)
+  width: 100%
+
+.section_header.-fixed,
+.section_content.-fixed,
+.section_footer.-fixed
+  -flu-display: container

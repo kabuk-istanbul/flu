@@ -1,0 +1,126 @@
+is-checker-element()
+  padding (($base-block-height - flu-checker-width) / 2)
+  display inline-block
+  user-select none
+  cursor pointer
+
+flu-check-box()
+  .check-box
+    is-checker-element()
+    input
+      display none
+
+  .check-box_button
+    display inline-block
+    width flu-checker-width
+    height flu-checker-width
+    margin-right 0.25rem
+    margin-left 0.25rem
+    font-size 0.75rem
+    vertical-align bottom
+    background-color transparent
+    border $input-border-width solid $input-border-color
+    border-radius $input-border-radius
+    -flu-transition: background border
+    &:before
+      display block
+      width 56%
+      height 35%
+      opacity 0
+      margin-left 0.25rem
+      margin-top 0.3rem
+      border-width 0 0 0.125rem 0.125rem
+      border-style solid
+      border-color #ffffff
+      content ' '
+      transform rotate(-45deg)
+      -flu-transition: opacity
+
+  .check-box input:checked + .check-box_button
+    background-color $ui-colors['primary']
+    border-color $ui-colors['primary']
+    &:before
+      opacity 1
+
+  .check-box:hover input:not(:checked) + .check-box_button
+    border-color $input-hover-border-color
+    &:before
+      opacity 1
+      border-color $input-border-color
+
+
+flu-radio-box()
+  .radio-box
+    is-checker-element()
+    input
+      display none
+
+  .radio-box_button
+    display inline-flex
+    justify-content center
+    align-items center
+    width flu-checker-width
+    height flu-checker-width
+    margin-right 0.25rem
+    margin-left 0.25rem
+    vertical-align bottom
+    border $input-border-width solid $input-border-color
+    border-radius 10px
+    -flu-transition(border)
+
+    &:before
+      display block
+      opacity 0
+      width (flu-checker-width / 2)
+      height (flu-checker-width / 2)
+      border-radius (flu-checker-width / 4)
+      background-color $input-border-color
+      content ' '
+      -flu-transition: opacity background-color
+
+  .radio-box input:checked + .radio-box_button
+    border-color $ui-colors['primary']
+    &:before
+      background-color $ui-colors['primary']
+      opacity 1
+
+  .radio-box:hover input:not(:checked) + .radio-box_button
+    border-color $input-hover-border-color
+    &:before
+      opacity 1
+
+
+flu-slide-checker()
+  .slide-checker
+    is-checker-element()
+    input
+      display none
+
+  .slide-checker_button
+    display inline-flex
+    width $base-block-height
+    height flu-checker-width
+    margin-right 0.25rem
+    margin-left 0.25rem
+    vertical-align bottom
+    background-color $input-border-color
+    border-radius (flu-checker-width / 2)
+    -flu-transition: background
+    &:before
+      position relative
+      top $input-border-width
+      left $input-border-width
+      width (flu-checker-width - $input-border-width * 2)
+      height (flu-checker-width - $input-border-width * 2)
+      border-radius (flu-checker-width / 2)
+      background-color $ui-colors['white']
+      content ' '
+      -flu-transition: left $base-transition-duration / 2
+
+  .slide-checker input:checked + .slide-checker_button
+    background-color $ui-colors['primary']
+    &:before
+      left ($base-block-height - flu-checker-width + $input-border-width)
+
+  .slide-checker:hover input:not(:checked) + .slide-checker_button
+    background-color $input-hover-border-color

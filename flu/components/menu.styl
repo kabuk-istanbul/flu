@@ -1,0 +1,45 @@
+//---| COMPONENT CONFIG |---------------------------------------------------------------------------------------------//
+
+flu-menu-base-size = base
+flu-menu-base-style = link
+
+flu-menu-size-modifiers   = all
+flu-menu-color-modifiers  = all
+
+//---| COMPONENT MIXINS |---------------------------------------------------------------------------------------------//
+
+
+
+//---| COMPONENT BASE CLASSES |---------------------------------------------------------------------------------------//
+
+.menu
+  display: flex
+
+.menu_item
+  display: block
+
+.menu_link
+  display: block
+  color: $link-color
+
+  &:hover
+    color: shade($link-color, 10%)
+
+.menu:not(.-big)
+  &.-horizontal
+    .menu_link
+      -flu-block-size: base
+
+    .menu_item.-container
+      padding-left: blockPadding(left, base)
+      padding-right: @padding-left
+
+  &:not(.-horizontal)
+    .menu_link
+      padding-right: 0
+      padding-left: 0
+      -flu-block-size: base
+
+
+.menu:not(.-horizontal)
+  flex-direction: column

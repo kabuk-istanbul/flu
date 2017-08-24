@@ -1,0 +1,21 @@
+-flu-label()
+  display: inline-flex unless @display
+  margin: 0 if @margin == null
+  justify-content: center unless @justify-content
+  align-items: center unless @align-items
+  vertical-align: top unless @vertical-align
+  font-weight: normal unless @font-weight
+  font-size: inherit unless @font-size
+  font-family: $text-font-family unless @font-family
+  text-align: center unless @text-align
+  white-space: nowrap unless @white-space
+
+-flu-label-style(style, args...)
+  mxn = -flu-label-style- + style
+  mxn(args)
+
+-include-label-base()
+  .label
+    -flu-display: label
+    -flu-label-size: base
+    -flu-label-style: simple $ui-colors['primary']
