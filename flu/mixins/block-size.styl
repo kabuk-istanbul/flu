@@ -1,22 +1,39 @@
--flu-block-size($size)
-  $block-height = type($size) == 'ident' ? blockHeight($size) : $size
-  height: $block-height
-  min-width: $block-height unless @min-width
+-flu-block-size($width, $height = $width)
+  -flu-block-height: $height
+  -flu-block-width: $width
+
+-flu-block-height($height)
+  $height = type($height) == 'ident' ? blockHeight($height) : $height
+
+  height: $height
   line-height: $base-line-height unless @line-height
 
-  $border = {}
   if @border-width
-    $border[top] = @border-width
-    $border[right] = @border-width
-    $border[bottom] = @border-width
-    $border[left] = @border-width
+    $border-top = @border-width
+    $border-bottom = @border-width
   else
-    $border[top] = @border-top-width || 0
-    $border[right] = @border-right-width || 0
-    $border[bottom] = @border-bottom-width || 0
-    $border[left] = @border-left-width || 0
+    $border-top = @border-top-width || 0
+    $border-bottom = @border-bottom-width || 0
 
-  padding-top: (($block-height - @line-height) / 2 - $border[top])
-  padding-right: ((ceil($block-height / $magic-unit / 2) - 1) * $magic-unit - $border[right])
-  padding-bottom: (($block-height - @line-height) / 2 - $border[bottom])
-  padding-left: ((ceil($block-height / $magic-unit / 2) - 1) * $magic-unit - $border[left])
+  padding-top: (($height - @line-height) / 2 - $border-top)
+  padding-bottom: (($height - @line-height) / 2 - $border-bottom)
+
+-flu-block-width($width)
+  $height = @height || @line-height || $base-block-height
+  $line-height = @line-height || $base-line-height
+  if $width is a 'ident'
+    if $width in flu-sizes
+      $height = blockHeight($width)
+    $width = auto
+
+  width: $width
+
+  if @border-width
+    $border-right = @border-width
+    $border-left = @border-width
+  else
+    $border-right = @border-right-width || 0
+    $border-left = @border-left-width || 0
+
+  padding-right: ((ceil($height / $magic-unit / 2) - 1) * $magic-unit - $border-right)
+  padding-left: ((ceil($height / $magic-unit / 2) - 1) * $magic-unit - $border-left)

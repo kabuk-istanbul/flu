@@ -1,0 +1,14 @@
+-flu-menu-style-basic()
+  &_link
+    -flu-menu-link-base()
+    -flu-menu-link-color-basic($link-color)
+
+-flu-menu-color-basic($color, $hover-color = shade($color, 10%), $active-color = shade($color, 10%))
+  -flu-menu-link-color-basic($color, $hover-color, $active-color)
+
+-flu-menu-link-color-basic($color, $hover-color = shade($color, 10%), $active-color = shade($color, 10%))
+  color: $color
+  &:hover
+    color: $hover-color
+  &:active
+    color: $hover-color

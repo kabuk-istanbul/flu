@@ -1,0 +1,34 @@
+-flu-menu($style, $args...)
+  $directions = vertial horizontal
+  $direction = vertical
+  $size = base
+  for $arg in $args
+    if $arg in $directions
+      $direction = $arg
+    else if $arg in flu-sizes
+      $size = $arg
+  -flu-menu-style: $style
+  -flu-menu-direction: $direction
+  -flu-menu-size: $size
+
+-flu-menu-size($size)
+  ^[0]_item
+    if @display == flex
+      -flu-block-width: $size
+    -flu-block-height: $size
+
+-flu-menu-direction($direction = vertical)
+  if $direction == vertical
+    &_item
+      display: block
+  else
+    display: flex
+    flex-direction: row
+
+-flu-menu-style($style)
+  $mxn = convert('-flu-menu-style-' + $style)
+  $mxn()
+
+-flu-menu-link-base()
+  display: block
+  text-decoration: none

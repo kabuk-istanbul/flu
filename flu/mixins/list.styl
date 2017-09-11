@@ -1,8 +1,42 @@
--flu-list(type, orientation)
-  if orientation == horizontal
-    display flex
+-flu-list($type, $orientation = vertical)
+  if $orientation == horizontal
+    display: flex
   else
-    display block
+    display: block
+  $mxn = convert('-flu-list-type-' + $type)
+  $mxn($orientation)
+
+-flu-list-style($style)
+  $mxn = convert('-flu-list-style-' + $style)
+  $mxn()
 
 -flu-list-item()
   position relative
+
+-flu-list-type-basic($orientation)
+  &_item
+    display: block
+
+-flu-list-type-definition($orientation)
+  &_term
+    font-weight: bold
+  &_description
+    margin-left: $base-line-height
+
+  if $orientation == horizontal
+    flex-wrap: wrap
+    &_term
+      width: auto
+    &_description
+      flex: 1
+
+-flu-list-style-bullet()
+  $bullet-width = $base-line-height
+  ^[0]_item
+    padding-left: $bullet-width
+    &:before
+      display: inline-block
+      width: $bullet-width
+      margin-left: - $bullet-width
+      text-align: center
+      content: '•'

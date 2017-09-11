@@ -7,7 +7,16 @@
   -flu-size: 100px 200px
   -flu-transition: width height
 
-  
+.menu
+  -flu-menu: basic
+  line-height: 1.5rem
+  -flu-block-width: base
+
+.list
+  -flu-list: basic
+  &.-bullet
+    -flu-list-style: bullet
+
 
 .container
   -flu-display: container
@@ -26,5 +35,3 @@
 -include-select-box()
 
 -include-grid()
-
--include-component(menu)
